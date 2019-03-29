@@ -197,6 +197,25 @@ function draw_mino(mino_obj)
   -- find color
   mino_color = mino_colors[mino_obj.type]
   love.graphics.setColor(
+    1,
+    1,
+    1
+  )
+  for i=1,#mino_obj.piece do
+    for j=1,#mino_obj.piece[i] do
+      if mino_obj.piece[i][j] > 0 then
+        love.graphics.rectangle(
+          "fill",  -- drawmode
+          (mino_obj.x * board_spacing) + ((j-1) * board_spacing) + (offset.x + 1),
+          (mino_obj.y * board_spacing) + ((i-1) * board_spacing) + (offset.y + 1),
+          board_spacing + 1, -- width
+          board_spacing + 1, -- height
+          board_spacing/6
+        )
+      end
+    end
+  end
+  love.graphics.setColor(
     mino_color[1]/255,
     mino_color[2]/255,
     mino_color[3]/255
@@ -209,11 +228,11 @@ function draw_mino(mino_obj)
           (mino_obj.x * board_spacing) + ((j-1) * board_spacing) + offset.x,
           (mino_obj.y * board_spacing) + ((i-1) * board_spacing) + offset.y,
           board_spacing, -- width
-          board_spacing -- height
+          board_spacing, -- height
+          board_spacing/6
         )
       end
     end
-
   end
 end
 
